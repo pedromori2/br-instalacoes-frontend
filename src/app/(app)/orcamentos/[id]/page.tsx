@@ -236,6 +236,7 @@ export default function OrcamentoDetailPage() {
   }
 
   function linhasExportacao() {
+    if (!orcamento) return [];
     return orcamento.itens.map((item) => ({
       Item: item.itemNome,
       "Descricao personalizada": item.descricaoPersonalizada ?? "",
@@ -248,6 +249,7 @@ export default function OrcamentoDetailPage() {
   }
 
   function onExportarCsv() {
+    if (!orcamento) return;
     const cabecalho = [
       ["Orcamento", `#${orcamento.id}`],
       ["Cliente", orcamento.clienteNome],
@@ -274,6 +276,7 @@ export default function OrcamentoDetailPage() {
   }
 
   function onExportarXlsx() {
+    if (!orcamento) return;
     const linhas = linhasExportacao();
     const planilha = XLSX.utils.aoa_to_sheet([
       [`Orcamento #${orcamento.id}`],
